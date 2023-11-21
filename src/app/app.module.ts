@@ -19,7 +19,8 @@ import { CoreModule } from './core/core.module';
     SharedModule,
     ShoppingListModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    // StoreModule.forRoot({shoppingList:shoppingListReducer})
   ],
   bootstrap: [AppComponent]
 })

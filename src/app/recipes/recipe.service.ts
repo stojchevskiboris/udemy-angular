@@ -5,6 +5,8 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
+import { Store } from "@ngrx/store";
+import * as ShoppingListActions from '../shopping-list/store-NotUsing/shopping-list.actions'
 
 @Injectable()
 export class RecipeService {
@@ -43,7 +45,7 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients)
-  }
+      }
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe)
@@ -67,14 +69,16 @@ export class RecipeService {
 
   fetchRecipesData() {
     const token = this.authService.getToken()
-    return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/recipeData.json?auth=' + token).subscribe(
+    
+    return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/recipeData.json?auth=' + token)
+    .subscribe(
       (data: any[]) => {
         try {
-          this.recipes = data.map(recipesData => {
-              if (!recipesData['ingredients']){
-                recipesData['ingredients'] = []
+          this.recipes = data.map(recipeFetched => {
+              if (!recipeFetched['ingredients']){
+                recipeFetched['ingredients'] = []
             } // add property with empty array if no ingredients in the recipe
-            return recipesData
+            return recipeFetched
           })          
           this.recipesChanged.next(this.recipes.slice())
         }

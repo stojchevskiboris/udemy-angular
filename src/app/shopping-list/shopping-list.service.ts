@@ -6,15 +6,16 @@ import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class ShoppingListService {
-
-    constructor(private http: HttpClient,
-        private authService: AuthService) { }
-
+    
     ingredientsChanged = new Subject<Ingredient[]>()
     startedEditing = new Subject<number>;
+
     private ingredients: Ingredient[] = [
         // new Ingredient("Apple", 2)
     ];
+
+    constructor(private http: HttpClient,
+        private authService: AuthService) { }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -69,7 +70,8 @@ export class ShoppingListService {
     fetchShoppingListData() {
         const token = this.authService.getToken()
 
-        return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/shoppingListData.json?auth=' + token).subscribe(
+        return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/shoppingListData.json?auth=' + token)
+        .subscribe(
             (data: any[]) => {
                 try {
                     this.ingredients = data
