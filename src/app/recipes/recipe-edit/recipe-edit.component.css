@@ -1,0 +1,11 @@
+.mx-2{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.my-2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

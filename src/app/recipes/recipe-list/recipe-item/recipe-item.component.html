@@ -1,0 +1,15 @@
+<a  [routerLink]="[index]" 
+    routerLinkActive="active"
+    style="cursor: pointer;" 
+    class=" list-group-item clearfix cursor-pointer">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading"><strong>{{ recipe.name }}</strong></h4>
+        <p class="list-group-item-text">{{ recipe.description | slice:0:35 }}<span *ngIf="recipe.description.length>35"> ...</span></p>
+    </div>
+    <span class="pull-right">
+        <img 
+        [src]="recipe.imagePath" 
+        alt="{{ recipe.name }}" 
+        style="max-height: 50px;">
+    </span>
+</a>
