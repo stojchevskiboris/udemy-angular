@@ -14,11 +14,11 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   recipe?: Recipe;
   id?: number
   subscription: Subscription
+  
   constructor(private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService) { }
-
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
@@ -27,8 +27,6 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
         this.recipe = this.recipeService.getRecipeById(this.id)
       }
     )
-
-
   }
 
   onAddToShoppingList() {

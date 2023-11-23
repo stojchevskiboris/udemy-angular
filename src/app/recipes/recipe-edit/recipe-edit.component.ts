@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -58,10 +58,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onDeleteIngredient(ingredient_id: number, recipe_id) {
-    // console.log('----------------');
-    // console.log(this.recipeService.getRecipeById(recipe_id));
-    // console.log((<FormArray>this.recipeForm.get('ingredients').value[ingredient_id]));
-    
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(ingredient_id)
   }
 
@@ -73,8 +69,6 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipeById(this.id)
-      // console.log(recipe);
-
       recipeName = recipe.name
       recipeImagePath = recipe.imagePath
       recipeDescription = recipe.description

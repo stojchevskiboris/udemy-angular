@@ -5,8 +5,6 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
-import { Store } from "@ngrx/store";
-import * as ShoppingListActions from '../shopping-list/store-NotUsing/shopping-list.actions'
 
 @Injectable()
 export class RecipeService {
