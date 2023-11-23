@@ -14,7 +14,6 @@ export class AuthService {
             .then((userCredential) => {
                 // Signed up
                 const user = userCredential.user;
-
             })
             .catch((error) => {
                 console.log(error.message);
@@ -46,6 +45,7 @@ export class AuthService {
         auth.signOut()
         this.token = null
         localStorage.removeItem('token')
+        this.router.navigate(['/'])
     }
 
     getToken() {

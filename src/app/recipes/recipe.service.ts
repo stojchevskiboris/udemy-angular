@@ -32,8 +32,8 @@ export class RecipeService {
   ]
 
   constructor(private slService: ShoppingListService,
-              private http: HttpClient,
-              private authService: AuthService) { }
+    private http: HttpClient,
+    private authService: AuthService) { }
 
   getRecipes() {
     return this.recipes.slice();
@@ -45,7 +45,7 @@ export class RecipeService {
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients)
-      }
+  }
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe)
@@ -69,23 +69,23 @@ export class RecipeService {
 
   fetchRecipesData() {
     const token = this.authService.getToken()
-    
+
     return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/recipeData.json?auth=' + token)
-    .subscribe(
-      (data: any[]) => {
-        try {
-          this.recipes = data.map(recipeFetched => {
-              if (!recipeFetched['ingredients']){
+      .subscribe(
+        (data: any[]) => {
+          try {
+            this.recipes = data.map(recipeFetched => {
+              if (!recipeFetched['ingredients']) {
                 recipeFetched['ingredients'] = []
-            } // add property with empty array if no ingredients in the recipe
-            return recipeFetched
-          })          
-          this.recipesChanged.next(this.recipes.slice())
+              } // add property with empty array if no ingredients in the recipe
+              return recipeFetched
+            })
+            this.recipesChanged.next(this.recipes.slice())
+          }
+          catch {
+            console.log("Error: Couldn`t fetch server data for recipe.service.ts");
+          }
         }
-        catch {
-          console.log("Error: Couldn`t fetch server data for recipe.service.ts");
-        }
-      }
-    )
+      )
   }
 }

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a [routerLink]="['/']" class="navbar-brand"><strong><img src="../../../assets/icon.png" width="20px"> Recipe Book</strong></a>
+            <a [routerLink]="['/']" class="navbar-brand"><strong><img src="../../../assets/icon.png" width="20px">
+                    Recipe Book</strong></a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -14,7 +15,8 @@
                     <li><a routerLink="/signup">Register</a></li>
                     <li><a routerLink="/signin">Login</a></li>
                 </ng-template>
-                <li *ngIf="isAuthenticated()"><a class="c-pointer" (click)="onLogout()">Logout</a></li>
+                <li *ngIf="isAuthenticated()"><a class="c-pointer" (click)="onLogout()">
+                        Logout</a></li>
                 <li class="dropdown" appDropdown *ngIf="isAuthenticated()">
                     <a class="dropdown-toggle c-pointer" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">

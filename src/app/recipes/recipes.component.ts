@@ -6,15 +6,17 @@ import { RecipeService } from './recipe.service';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css']
 })
-export class RecipesComponent implements OnInit{
-  
+export class RecipesComponent implements OnInit {
 
-  constructor(private recipeService: RecipeService){ }
 
-  ngOnInit(){
-    if(this.recipeService.getRecipes().length == 0)
-      this.recipeService.fetchRecipesData()
+  constructor(private recipeService: RecipeService) { }
+
+  ngOnInit() {
+    if (this.recipeService.getRecipes().length == 0)
+      try {
+        this.recipeService.fetchRecipesData()
+      } catch { }
   }
-  
+
 
 }

@@ -20,8 +20,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
   subscription?:Subscription
 
   ngOnInit(){
+    
     if(this.slService.getIngredients().length==0){
-      this.slService.fetchShoppingListData()  
+      try {
+        this.slService.fetchShoppingListData()
+      } catch { }
     }
     this.ingredients = this.slService.getIngredients()
     this.subscription = this.slService.ingredientsChanged.subscribe(

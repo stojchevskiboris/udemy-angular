@@ -20,13 +20,23 @@ export class AppComponent implements OnInit{
       apiKey: "AIzaSyB9HBc-3eer9rINWMb1pUKRYQGmIT-yTW4",
       authDomain: 'udemy-ng-http-e83c2.firebaseapp.com'
     };
-    
+
     const app = initializeApp(firebaseConfig);
+
+    setTimeout(() => {
+      try{
+        this.authService.getToken()
+        setTimeout(() => {
+          this.rService.fetchRecipesData()
+          this.slService.fetchShoppingListData()
+        }, 500);
+      } catch {}
+    }, 1000);
+
     try{
       this.rService.fetchRecipesData()
       this.slService.fetchShoppingListData()
     } catch{}
     
-
   }
 }

@@ -8,6 +8,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,11 +18,14 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule,
-    ShoppingListModule,
     AuthModule,
     CoreModule,
-    // StoreModule.forRoot({shoppingList:shoppingListReducer})
+    SharedModule,
+    ShoppingListModule,
+    // StoreModule.forRoot({shoppingList:shoppingListReducer}),
+    // EffectsModule.forRoot([AuthEffects]),
+    // StoreRouterConnectingModule,
+    // StoreDevtoolsModule
   ],
   bootstrap: [AppComponent]
 })
