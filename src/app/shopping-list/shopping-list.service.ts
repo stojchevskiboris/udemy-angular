@@ -15,7 +15,7 @@ export class ShoppingListService {
     ];
 
     constructor(private http: HttpClient,
-        private authService: AuthService) { }
+                private authService: AuthService) { }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -32,8 +32,6 @@ export class ShoppingListService {
 
     addIngredient(ingredientToAdd: Ingredient) {
         if (this.ingredients != null) {
-
-
             // new data transfer object to prevent passing reference to recipe
             let dtoIngredient = new Ingredient(ingredientToAdd.name, ingredientToAdd.amount)
             let isSameIng = false

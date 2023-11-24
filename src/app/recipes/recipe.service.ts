@@ -30,8 +30,8 @@ export class RecipeService {
   ]
 
   constructor(private slService: ShoppingListService,
-    private http: HttpClient,
-    private authService: AuthService) { }
+              private http: HttpClient,
+              private authService: AuthService) { }
 
   getRecipes() {
     return this.recipes.slice();
@@ -67,7 +67,6 @@ export class RecipeService {
 
   fetchRecipesData() {
     const token = this.authService.getToken()
-
     return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/recipeData.json?auth=' + token)
       .subscribe(
         (data: any[]) => {

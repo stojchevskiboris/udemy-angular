@@ -6,8 +6,8 @@ import { RecipeService } from './recipe.service';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css']
 })
-export class RecipesComponent implements OnInit {
 
+export class RecipesComponent implements OnInit {
 
   constructor(private recipeService: RecipeService) { }
 
@@ -17,6 +17,5 @@ export class RecipesComponent implements OnInit {
         this.recipeService.fetchRecipesData()
       } catch { }
   }
-
 
 }

@@ -9,27 +9,26 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit, OnDestroy{
+
+export class ShoppingListComponent implements OnInit, OnDestroy {
   constructor(private slService: ShoppingListService,
-              private authService: AuthService){}
+              private authService: AuthService) { }
 
-  ingredients: Ingredient[] = [
-    
-  ];
-  subscription?:Subscription
+  ingredients: Ingredient[] = [];
+  subscription?: Subscription
 
-  ngOnInit(){
-    
-    if(this.slService.getIngredients().length==0){
+  ngOnInit() {
+
+    if (this.slService.getIngredients().length == 0) {
       try {
         this.slService.fetchShoppingListData()
       } catch { }
     }
     this.ingredients = this.slService.getIngredients()
     this.subscription = this.slService.ingredientsChanged.subscribe(
-    (ingredients: Ingredient[]) => {
-    this.ingredients = ingredients
-    }
+      (ingredients: Ingredient[]) => {
+        this.ingredients = ingredients
+      }
     )
   }
 
@@ -37,11 +36,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
     this.subscription?.unsubscribe()
   }
 
-  onEditItem(index:number){
+  onEditItem(index: number) {
     this.slService.startedEditing.next(index);
   }
 
-  isAuthenticated(){
+  isAuthenticated() {
     return this.authService.isAuthenticated()
   }
 

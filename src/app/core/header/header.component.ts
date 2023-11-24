@@ -9,6 +9,7 @@ import { getAuth } from "firebase/auth";
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements DoCheck{
     
     userEmail:string = ''

@@ -7,11 +7,12 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent {
 
-constructor(private authService: AuthService){} 
+  constructor(private authService: AuthService) { }
 
-  onSignup(form: NgForm){
+  onSignup(form: NgForm) {
     const email = form.value.email
     const password = form.value.password
     this.authService.signupUser(email, password)

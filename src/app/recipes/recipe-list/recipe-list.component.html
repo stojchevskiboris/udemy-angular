@@ -10,9 +10,11 @@
     <div class="col-xs-12">
 
         <div class="row">
-            <div class="col-md-3">Filter by:</div>
+            <div class="col-md-3"><h5>Filter by:</h5></div>
             <div class="col-md-8">
-                <input class="form-control" maxlength="20" [(ngModel)]="listFilter" type="text">
+                <input class="form-control user-input" #mainInput id="mainInput" type="text" maxlength="20" [(ngModel)]="listFilter" (ngModelChange)="onInputChange($event)">
+                <input class="form-control suggest-input" [(ngModel)]='secondInput' id="secondInput" value="" maxlength="20"  type="text">
+                
             </div>
         </div>
         <br>
@@ -21,9 +23,14 @@
                 <h4>Filtered by: {{listFilter}} </h4>
             </div>
         </div> -->
+<br><br>
+        <div *ngIf="recipes.length==0 && searchMode"><h4>No recipes found</h4></div>
+
+        <div *ngIf="recipes.length==0 && !searchMode && !loadingTimeout">
+            <img src="../../assets/loading.gif" width="50px">
+        </div>
 
 
-        
         <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" 
         [recipe]="recipeEl" [index]="getIndex(recipeEl)"></app-recipe-item>
 

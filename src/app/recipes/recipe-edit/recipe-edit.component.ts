@@ -8,15 +8,15 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.css']
 })
-export class RecipeEditComponent implements OnInit {
 
+export class RecipeEditComponent implements OnInit {
 
   id?: number;
   editMode = false
   recipeForm: FormGroup
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private recipeService: RecipeService) { }
+              private router: Router,
+              private recipeService: RecipeService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -42,8 +42,6 @@ export class RecipeEditComponent implements OnInit {
   onCancel() {
     this.router.navigate(['recipes'])
   }
-
-
 
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(

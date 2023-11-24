@@ -10,15 +10,16 @@ import { AuthService } from 'src/app/auth/auth.service';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
+
 export class RecipeDetailComponent implements OnInit, OnDestroy {
   recipe?: Recipe;
   id?: number
   subscription: Subscription
   
   constructor(private recipeService: RecipeService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService) { }
+              private route: ActivatedRoute,
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(

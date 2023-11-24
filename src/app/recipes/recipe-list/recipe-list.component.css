@@ -1,0 +1,13 @@
+input.user-input {
+    /* font-family: monospace; */
+    position: absolute;
+    background: transparent;
+    color: #000;
+    z-index: 2
+}
+input.suggest-input {
+    /* font-family: monospace; */
+    position: absolute;
+    color: #ccc;
+    z-index: 1
+}
