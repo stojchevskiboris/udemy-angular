@@ -1,4 +1,6 @@
+
 <div *ngIf="recipe">
+    
     <div class="row">
         <div class="col-xs-12">
             <img [src]="recipe.imagePath" style="max-height: 200px;" class="img-responsive" alt="{{recipe.name}}">
@@ -41,5 +43,6 @@
             </ul>
         </div>
     </div>
-
+    <button routerLink="/recipes" class="btn btn-secondary">Back</button>
+<br><br><br>
 </div>

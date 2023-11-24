@@ -40,7 +40,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['recipes', this.id])
+    this.router.navigate(['recipes'])
   }
 
 

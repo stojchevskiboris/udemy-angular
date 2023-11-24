@@ -1,6 +1,9 @@
 .c-pointer{
     cursor: pointer;
 }
+.c-default{
+  cursor: default;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

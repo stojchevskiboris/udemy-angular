@@ -24,6 +24,9 @@
                     <li><a routerLink="/signup">Register</a></li>
                     <li><a routerLink="/signin">Login</a></li>
                 </ng-template>
+                <li *ngIf="isAuthenticated()">
+                    <a class="c-default"><u>{{userEmail}}</u></a>
+                </li>
                 <li *ngIf="isAuthenticated()"><a class="c-pointer" (click)="onLogout()">
                         Logout</a></li>
                 <li class="dropdown" appDropdown *ngIf="isAuthenticated()">

@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 @Injectable()
 export class AuthService {
     token: string;
+    user:any
 
     constructor(private router: Router) { }
 
@@ -12,11 +13,18 @@ export class AuthService {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed up
+                auth.currentUser.getIdToken()
+                    .then(
+                        (token: string) => {
+                            this.token = token
+                            localStorage.setItem('token', token)
+                        }
+                    )
                 const user = userCredential.user;
+                this.router.navigate(['/'])
             })
             .catch((error) => {
-                console.log(error.message);
+                alert(error.message);
             });
     }
     signinUser(email: string, password: string) {
@@ -31,12 +39,12 @@ export class AuthService {
                         }
                     )
                 const user = userCredential.user;
-                console.log("Signed in");
+                this.user = user
                 this.router.navigate(['/'])
 
             })
             .catch((error) => {
-                console.log(error.message);
+                alert(error.message);
             });
     }
 
@@ -57,8 +65,10 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        // console.log(localStorage.getItem('token'));
-        // return localStorage.getItem('token') != null
         return this.token != null
+    }
+
+    getUser(){
+        return this.user
     }
 }

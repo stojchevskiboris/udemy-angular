@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <button routerLink="new" class="btn btn-success">New Recipe</button>
+        <button routerLink="new" (click)="clearFilter()" class="btn btn-success">New Recipe</button>
     </div>
 </div>
 
@@ -8,9 +8,27 @@
 
 <div class="row">
     <div class="col-xs-12">
+
+        <div class="row">
+            <div class="col-md-3">Filter by:</div>
+            <div class="col-md-8">
+                <input class="form-control" maxlength="20" [(ngModel)]="listFilter" type="text">
+            </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+            <div class="col-md-6">
+                <h4>Filtered by: {{listFilter}} </h4>
+            </div>
+        </div> -->
+
+
         
         <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" 
-        [recipe]="recipeEl" [index]="i"></app-recipe-item>
+        [recipe]="recipeEl" [index]="getIndex(recipeEl)"></app-recipe-item>
+
+        <!-- <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" 
+        [recipe]="recipeEl" [index]="i"></app-recipe-item> -->
     </div>
 </div>
 <br>
