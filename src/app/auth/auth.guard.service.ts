@@ -6,5 +6,8 @@ export const AuthGuard: CanActivateFn = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
 ) => {
+    if (!inject(AuthService).isAuthenticated()) {
+        alert("Please log in to add and manage recipes")
+    }
     return inject(AuthService).isAuthenticated()
 }

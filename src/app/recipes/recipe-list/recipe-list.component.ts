@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipes = this.recipeService.getRecipes();
     this.allRecipes = this.recipeService.getRecipes();
 
-    setTimeout(() => {
+    setTimeout(() => { // set loading timeout to 5 seconds to display recipes
       this.loadingTimeout = true
     }, 5000);
   }
@@ -78,7 +78,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     return -1 // unsuccessful
   }
 
-  onInputChange(inputEvent) {
+  onInputChange(inputEvent) { // autocomplete function
     if (inputEvent != '') { // main input has some text to filter from
       let recipeNames: string[] = this.recipeService.getRecipes()
         .map(r => r.name.toLocaleLowerCase())
@@ -94,4 +94,5 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       this.secondInput = ''
     }
   }
+
 }

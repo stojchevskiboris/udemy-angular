@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnChanges, OnInit } from "@angular/core";
+import { Component, DoCheck, ElementRef, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 import { RecipeService } from "../../recipes/recipe.service";
 import { ShoppingListService } from "../../shopping-list/shopping-list.service";
 import { AuthService } from "../../auth/auth.service";
@@ -11,6 +11,8 @@ import { getAuth } from "firebase/auth";
 })
 
 export class HeaderComponent implements DoCheck{
+    @ViewChild('nbSupportedContent') nbSupportedContent:ElementRef
+    @ViewChild('manageDropdown') manageDropdown:ElementRef
     
     userEmail:string = ''
     constructor(private rService: RecipeService,
@@ -40,6 +42,11 @@ export class HeaderComponent implements DoCheck{
 
     onLogout(){
         this.authService.logout()
+    }
+    
+    collapseNavbar(){
+        this.nbSupportedContent.nativeElement['classList'].remove('in')
+        // this.manageDropdown.nativeElement['classList'].remove('open')
     }
 }
 

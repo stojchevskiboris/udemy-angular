@@ -6,7 +6,7 @@ import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class ShoppingListService {
-    
+
     ingredientsChanged = new Subject<Ingredient[]>()
     startedEditing = new Subject<number>;
 
@@ -15,7 +15,7 @@ export class ShoppingListService {
     ];
 
     constructor(private http: HttpClient,
-                private authService: AuthService) { }
+        private authService: AuthService) { }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -69,16 +69,19 @@ export class ShoppingListService {
         const token = this.authService.getToken()
 
         return this.http.get('https://recipes-ng-896ce-default-rtdb.europe-west1.firebasedatabase.app/shoppingListData.json?auth=' + token)
-        .subscribe(
-            (data: any[]) => {
-                try {
-                    this.ingredients = data
-                    this.ingredientsChanged.next(this.ingredients.slice())
+            .subscribe(
+                (data: any[]) => {
+                    try {
+                        if (data == null) {
+                            data = [] // initialize empty array to prevent operating errors
+                        }
+                        this.ingredients = data
+                        this.ingredientsChanged.next(this.ingredients.slice())
+                    }
+                    catch {
+                        console.log("Error: Couldn`t fetch server data for shopping-list.service.ts");
+                    }
                 }
-                catch {
-                    console.log("Error: Couldn`t fetch server data for shopping-list.service.ts");
-                }
-            }
-        )
+            )
     }
 }

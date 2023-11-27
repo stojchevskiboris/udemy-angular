@@ -1,5 +1,7 @@
 <div class="row" *ngIf="isAuthenticated()">
     <div class="col-xs-10">
+        <h2>Shopping List</h2>
+
         <app-shopping-edit></app-shopping-edit>
         <hr>
         <ul class="list-group">
@@ -11,5 +13,7 @@
 </div>
 
 <div class="row" *ngIf="!isAuthenticated()">
-    <h2>Please log in to view and manage the shopping list</h2>
+    <div class="col-xs-10">
+        <h2>Please log in to view and manage the shopping list</h2>
+    </div>
 </div>

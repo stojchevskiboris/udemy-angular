@@ -30,8 +30,8 @@ export class RecipeService {
   ]
 
   constructor(private slService: ShoppingListService,
-              private http: HttpClient,
-              private authService: AuthService) { }
+    private http: HttpClient,
+    private authService: AuthService) { }
 
   getRecipes() {
     return this.recipes.slice();
@@ -71,6 +71,9 @@ export class RecipeService {
       .subscribe(
         (data: any[]) => {
           try {
+            if (data == null) {
+              data = [] // initialize empty array to prevent operating errors
+            }
             this.recipes = data.map(recipeFetched => {
               if (!recipeFetched['ingredients']) {
                 recipeFetched['ingredients'] = []
