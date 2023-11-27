@@ -10,21 +10,22 @@ import { getAuth } from "firebase/auth";
     styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements DoCheck{
-    @ViewChild('nbSupportedContent') nbSupportedContent:ElementRef
-    @ViewChild('manageDropdown') manageDropdown:ElementRef
-    
-    userEmail:string = ''
+export class HeaderComponent implements DoCheck {
+    @ViewChild('nbSupportedContent') nbSupportedContent: ElementRef
+    @ViewChild('manageDropdown') manageDropdown: ElementRef
+    @ViewChild('btn') btn: ElementRef
+
+    userEmail: string = ''
     constructor(private rService: RecipeService,
-                private slService: ShoppingListService,
-                private authService: AuthService){}
+        private slService: ShoppingListService,
+        private authService: AuthService) { }
     ngDoCheck(): void {
-            const auth = getAuth()
-            if (auth.currentUser != null){
-                this.userEmail = auth.currentUser['reloadUserInfo']['email']
-            } else{
-                this.userEmail = ''
-            }
+        const auth = getAuth()
+        if (auth.currentUser != null) {
+            this.userEmail = auth.currentUser['reloadUserInfo']['email']
+        } else {
+            this.userEmail = ''
+        }
     }
     saveData() {
         this.rService.saveRecipesData().subscribe()
@@ -36,16 +37,19 @@ export class HeaderComponent implements DoCheck{
         this.slService.fetchShoppingListData()
     }
 
-    isAuthenticated(){
+    isAuthenticated() {
         return this.authService.isAuthenticated()
     }
 
-    onLogout(){
+    onLogout() {
         this.authService.logout()
     }
-    
-    collapseNavbar(){
-        this.nbSupportedContent.nativeElement['classList'].remove('in')
+
+    collapseNavbar() {
+        if (window.innerWidth < 768) {
+            this.btn.nativeElement.click()
+        }
+        // this.nbSupportedContent.nativeElement['classList'].remove('in')
         // this.manageDropdown.nativeElement['classList'].remove('open')
     }
 }
