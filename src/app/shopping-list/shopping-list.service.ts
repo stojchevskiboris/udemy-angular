@@ -10,12 +10,12 @@ export class ShoppingListService {
     ingredientsChanged = new Subject<Ingredient[]>()
     startedEditing = new Subject<number>;
 
-    private ingredients: Ingredient[] = [
-        // new Ingredient("Apple", 2)
-    ];
+    private ingredients: Ingredient[] = [];
 
     constructor(private http: HttpClient,
-        private authService: AuthService) { }
+        private authService: AuthService) { 
+
+        }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -73,7 +73,8 @@ export class ShoppingListService {
                 (data: any[]) => {
                     try {
                         if (data == null) {
-                            data = [] // initialize empty array to prevent operating errors
+                            return;
+                            //data = [] // initialize empty array to prevent operating errors
                         }
                         this.ingredients = data
                         this.ingredientsChanged.next(this.ingredients.slice())
